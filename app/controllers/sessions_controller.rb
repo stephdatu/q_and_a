@@ -3,6 +3,10 @@ class SessionsController < ApplicationController
     @sessions = Session.all
   end
 
+  def show
+    @session = Session.find(params[:id])
+  end
+
   def new
     @session = Session.new
   end
@@ -18,7 +22,18 @@ class SessionsController < ApplicationController
     end
   end
 
-  def show
+  def edit
     @session = Session.find(params[:id])
+  end
+
+  def update
+    @session = Session.find(params[:id])
+    if @session.update_attributes(params[:session])
+      flash[:notice] = "Session has been updated."
+      redirect_to @session
+    else
+      flash[:alert] = "Session has not been updated."
+      render action: "edit"
+    end
   end
 end
