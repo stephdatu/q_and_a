@@ -36,4 +36,11 @@ class SessionsController < ApplicationController
       render action: "edit"
     end
   end
+
+  def destroy
+    @session = Session.find(params[:id])
+    @session.destroy
+    flash[:notice] = "Session has been deleted."
+    redirect_to sessions_path
+  end
 end
