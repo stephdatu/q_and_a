@@ -1,1 +1,8 @@
 <%= link_to "New Session", new_session_path %>
+
+<h2>Sessions</h2>
+<ul>
+  <% @sessions.each do |session| %>
+    <li><%= link_to session.question, session %></li>
+  <% end %>
+</ul>
