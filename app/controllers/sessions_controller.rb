@@ -12,7 +12,8 @@ class SessionsController < ApplicationController
       flash[:notice] = "Session has been created."
       redirect_to @session
     else
-      # nothing, yet
+      flash[:alert] = "Session has not been created."
+      render action: "new"
     end
   end
 

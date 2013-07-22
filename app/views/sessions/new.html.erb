@@ -1,5 +1,6 @@
 <h2>New Session</h2>
 <%= form_for(@session) do |f| %>
+<%= f.error_messages %>
   <p>
     <%= f.label :question %><br>
     <%= f.text_area :question %>
