@@ -1,4 +1,6 @@
 QAndA::Application.routes.draw do
+  devise_for :users
+
   root to: "sessions#index"
 
   resources :sessions do
