@@ -1,0 +1,8 @@
+<%= link_to "New Discussion", new_discussion_path %>
+
+<h2>Discussions</h2>
+<ul>
+  <% @discussions.each do |discussion| %>
+    <li><%= link_to discussion.question, discussion %></li>
+  <% end %>
+</ul>

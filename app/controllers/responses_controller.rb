@@ -1,16 +1,16 @@
 class ResponsesController < ApplicationController
-before_filter :find_session
+before_filter :find_discussion
 before_filter :find_response, only: [:show, :edit, :update, :destroy]
 
   def new
-    @response = @session.responses.build
+    @response = @discussion.responses.build
   end
 
   def create
-    @response = @session.responses.build(params[:response])
+    @response = @discussion.responses.build(params[:response])
     if @response.save
       flash[:notice] = "Response has been created."
-      redirect_to [@session, @response]
+      redirect_to [@discussion, @response]
     else
       flash[:alert] = "Response has not been created."
       render action: "new"
@@ -26,7 +26,7 @@ before_filter :find_response, only: [:show, :edit, :update, :destroy]
   def update
     if @response.update_attributes(params[:response])
       flash[:notice] = "Response has been updated."
-      redirect_to [@session, @response]
+      redirect_to [@discussion, @response]
     else
       flash[:alert] = "Response has not been updated."
       render action: "edit"
@@ -36,15 +36,15 @@ before_filter :find_response, only: [:show, :edit, :update, :destroy]
   def destroy
     @response.destroy
     flash[:notice] = "Response has been deleted."
-    redirect_to @session
+    redirect_to @discussion
   end
 
   private
-    def find_session
-      @session = Session.find(params[:session_id])
+    def find_discussion
+      @discussion = Discussion.find(params[:discussion_id])
     end
 
     def find_response
-      @response = @session.responses.find(params[:id])
+      @response = @discussion.responses.find(params[:id])
     end
 end

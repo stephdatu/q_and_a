@@ -1,5 +1,5 @@
 class Response < ActiveRecord::Base
-  belongs_to :session
+  belongs_to :discussion
   attr_accessible :answer
 
   validates :answer, presence: true

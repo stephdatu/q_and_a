@@ -1,9 +1,9 @@
 QAndA::Application.routes.draw do
   devise_for :users
 
-  root to: "sessions#index"
+  root to: "discussions#index"
 
-  resources :sessions do
+  resources :discussions do
     resources :responses
   end
   # The priority is based upon order of creation:

@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature "Creating Responses" do
   before do
-    Factory(:session, question: "What is Rails?")
+    Factory(:discussion, question: "What is Rails?")
     visit '/'
     click_link "What is Rails?"
     click_link "New Response"

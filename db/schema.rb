@@ -11,22 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130723015048) do
+ActiveRecord::Schema.define(:version => 20130723170500) do
 
-  create_table "responses", :force => true do |t|
-    t.text     "answer"
-    t.integer  "session_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "responses", ["session_id"], :name => "index_responses_on_session_id"
-
-  create_table "sessions", :force => true do |t|
+  create_table "discussions", :force => true do |t|
     t.text     "question"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "responses", :force => true do |t|
+    t.text     "answer"
+    t.integer  "discussion_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "responses", ["discussion_id"], :name => "index_responses_on_discussion_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

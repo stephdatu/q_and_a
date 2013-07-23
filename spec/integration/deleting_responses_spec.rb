@@ -1,18 +1,18 @@
 require 'spec_helper'
 
 feature 'Deleting responses' do
-  let!(:session) { Factory(:session) }
-  let!(:response) { Factory(:response, session: session) }
+  let!(:discussion) { Factory(:discussion) }
+  let!(:response) { Factory(:response, discussion: discussion) }
 
   before do
     visit '/'
-    click_link session.question
+    click_link discussion.question
     click_link response.answer
   end
 
   scenario "Deleting a response" do
     click_link "Delete Response"
     page.should have_content("Response has been deleted.")
-    page.current_url.should == session_url(session)
+    page.current_url.should == discussion_url(discussion)
   end
 end

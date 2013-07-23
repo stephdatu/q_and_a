@@ -1,12 +1,12 @@
 require 'spec_helper'
 
 feature "Editing responses" do
-  let!(:session) { Factory(:session) }
-  let!(:response) { Factory(:response, session: session) }
+  let!(:discussion) { Factory(:discussion) }
+  let!(:response) { Factory(:response, discussion: discussion) }
 
   before do
     visit '/'
-    click_link session.question
+    click_link discussion.question
     click_link response.answer
     click_link "Edit Response"
   end

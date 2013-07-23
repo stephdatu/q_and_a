@@ -2,14 +2,14 @@ require 'spec_helper'
 
 feature "Viewing responses" do
   before do
-    whats_life = Factory(:session, question: "What is the meaning of life?")
+    whats_life = Factory(:discussion, question: "What is the meaning of life?")
     Factory(:response,
-            session: whats_life,
+            discussion: whats_life,
             answer: "Pi")
 
-    whats_rails = Factory(:session, question: "What is Rails?")
+    whats_rails = Factory(:discussion, question: "What is Rails?")
     Factory(:response,
-            session: whats_rails,
+            discussion: whats_rails,
             answer: "An open source web application framework")
 
     visit '/'
