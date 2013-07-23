@@ -33,6 +33,12 @@ before_filter :find_response, only: [:show, :edit, :update, :destroy]
     end
   end
 
+  def destroy
+    @response.destroy
+    flash[:notice] = "Response has been deleted."
+    redirect_to @session
+  end
+
   private
     def find_session
       @session = Session.find(params[:session_id])
