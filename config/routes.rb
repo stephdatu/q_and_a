@@ -1,7 +1,9 @@
 QAndA::Application.routes.draw do
   root to: "sessions#index"
 
-  resources :sessions
+  resources :sessions do
+    resources :responses
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
