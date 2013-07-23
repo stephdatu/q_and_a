@@ -1,4 +1,5 @@
 class ResponsesController < ApplicationController
+before_filter :authenticate_user!, except: [:index, :show]
 before_filter :find_discussion
 before_filter :find_response, only: [:show, :edit, :update, :destroy]
 
@@ -8,6 +9,7 @@ before_filter :find_response, only: [:show, :edit, :update, :destroy]
 
   def create
     @response = @discussion.responses.build(params[:response])
+    @response.user = current_user
     if @response.save
       flash[:notice] = "Response has been created."
       redirect_to [@discussion, @response]
