@@ -13,6 +13,7 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl'
+  gem 'email_spec'
 end
 
 group :assets do
