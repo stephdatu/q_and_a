@@ -1,10 +1,18 @@
 require 'spec_helper'
 
 feature "Editing Discussions" do
+  let!(:discussion) { Factory(:discussion) }
+  let!(:user) { Factory(:confirmed_user) }
+  let!(:discussion) do
+    discussion = Factory(:discussion)
+    discussion.update_attribute(:user, user)
+    discussion
+  end
+
   before do
-    Factory(:discussion, question: "What is the meaning of life?")
+    sign_in_as!(user)
     visit "/"
-    click_link "What is the meaning of life?"
+    click_link discussion.question
     click_link "Edit Discussion"
   end
 

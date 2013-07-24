@@ -1,4 +1,5 @@
 class DiscussionsController < ApplicationController
+before_filter :authenticate_user!, :except => [:index, :show]
 before_filter :find_discussion, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -14,6 +15,9 @@ before_filter :find_discussion, only: [:show, :edit, :update, :destroy]
 
   def create
     @discussion = Discussion.new(params[:discussion])
+    @discussion.user = current_user
+    current_user.save
+
     if @discussion.save
       flash[:notice] = "Discussion has been created."
       redirect_to @discussion
