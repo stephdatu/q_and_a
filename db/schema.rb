@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(:version => 20130724065831) do
 
   add_index "discussions", ["user_id"], :name => "index_discussions_on_user_id"
 
+  create_table "discussions_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "discussion_id"
+  end
+
   create_table "responses", :force => true do |t|
     t.text     "answer"
     t.integer  "discussion_id"
@@ -32,6 +37,11 @@ ActiveRecord::Schema.define(:version => 20130724065831) do
 
   add_index "responses", ["discussion_id"], :name => "index_responses_on_discussion_id"
   add_index "responses", ["user_id"], :name => "index_responses_on_user_id"
+
+  create_table "responses_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "response_id"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -54,15 +64,5 @@ ActiveRecord::Schema.define(:version => 20130724065831) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
-
-  create_table "users_answers", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "answer_id"
-  end
-
-  create_table "users_questions", :id => false, :force => true do |t|
-    t.integer "user_id"
-    t.integer "question_id"
-  end
 
 end

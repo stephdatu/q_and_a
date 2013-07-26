@@ -1,8 +1,8 @@
 class JoinUsersAndQuestions < ActiveRecord::Migration
   def change
-    create_table :users_questions, id: false do |t|
+    create_table :discussions_users, id: false do |t|
       t.references :user
-      t.references :question
+      t.references :discussion
     end
   end
 end

@@ -15,10 +15,8 @@ before_filter :find_discussion, only: [:show, :edit, :update, :destroy]
 
   def create
     @discussion = Discussion.new(params[:discussion])
-    @discussion.user = current_user
-    current_user.save
-
     if @discussion.save
+      @discussion.users << current_user
       flash[:notice] = "Discussion has been created."
       redirect_to @discussion
     else
@@ -32,8 +30,7 @@ before_filter :find_discussion, only: [:show, :edit, :update, :destroy]
 
   def update
     if @discussion.update_attributes(params[:discussion])
-      # @discussion.users << current_user unless current_user.in? @discussion.users
-      # @discussion.users |= [current_user]
+      @discussion.users << current_user
       flash[:notice] = "Discussion has been updated."
       redirect_to @discussion
     else

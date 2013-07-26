@@ -2,10 +2,13 @@
   <h3><%= link_to @discussion.question, [@discussion] %></h3>
   <h2><%= @response.answer %></h2>
   <span id='author'>
-    <p>
-      Created by <%= @response.user.email %>
-    </p>
-  </span>
+  <p>
+    Edited by
+    <% @response.users.each do |user| %>
+      <%= user.email %>
+    <% end %>
+  </p>
+</span>
     <%= link_to "Edit Response", [:edit, @discussion, @response] %>
     <%= link_to "Delete Response", [@discussion, @response], method: :delete,
         confirm: "Are you sure you want to delete this response?" %>

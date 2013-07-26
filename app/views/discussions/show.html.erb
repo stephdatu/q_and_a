@@ -3,7 +3,10 @@
 <h2><%= link_to @discussion.question %></h2>
 <span id='author'>
   <p>
-    Created by <%= @discussion.user.email %>
+    Edited by
+    <% @discussion.users.each do |user| %>
+      <%= user.email %>
+    <% end %>
   </p>
 </span>
 

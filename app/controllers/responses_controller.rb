@@ -8,9 +8,8 @@ before_filter :find_response, only: [:show, :edit, :update, :destroy]
 
   def create
     @response = @discussion.responses.build(params[:response])
-    @response.user = current_user
-    @response.user.save
     if @response.save
+      @response.users << current_user
       flash[:notice] = "Response has been created."
       redirect_to [@discussion, @response]
     else
@@ -27,6 +26,7 @@ before_filter :find_response, only: [:show, :edit, :update, :destroy]
 
   def update
     if @response.update_attributes(params[:response])
+      @response.users << current_user
       flash[:notice] = "Response has been updated."
       redirect_to [@discussion, @response]
     else
